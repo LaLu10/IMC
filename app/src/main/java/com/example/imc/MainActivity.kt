@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.example.imc.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
@@ -19,6 +20,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         b = ActivityMainBinding.inflate(layoutInflater)
         setContentView(b.root)
+        b.imageView.setOnClickListener {
+            val inflater= this!!.layoutInflater
+            val customlayout= inflater.inflate(R.layout.tabla_imc,null)
+            AlertDialog.Builder(this!!).setView(customlayout).show()
+        }
         b.sbAltura.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seek: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -48,10 +54,13 @@ class MainActivity : AppCompatActivity() {
         doubleHeight=height.times(height)/10000.0
         IMC=Math.round((weight/doubleHeight).times(100)).div(100.0)
         b.textView5.text=IMC.toString()
-//        calcObesidad()
+        calcObesidad()
     }
-//    fun calcObesidad(){
-//        if ()
-//    }
+    fun calcObesidad(){
+       var msj= when(IMC){
+           in 0.0..16.00 -> "Delgadez Severa"
+           else -> return
+       }
+    }
 }
 
