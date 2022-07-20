@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
 
            in 30.00..34.99 ->Snackbar.make(b.root, "Obesidad Leve", Snackbar.LENGTH_SHORT).setBackgroundTint(getColor(R.color.naranja))
                .setAction("VER TABLA") {
+                   showTable()
                    val inflater = this!!.layoutInflater
                    val customlayout = inflater.inflate(R.layout.tabla_imc, null)
                    AlertDialog.Builder(this!!).setView(customlayout)
@@ -87,6 +88,11 @@ class MainActivity : AppCompatActivity() {
                else -> return
            }
        }
+    fun showTable(){
+        val dialog = TableFragment()
+        dialog.show(supportFragmentManager, "TablaPeso")
+    }
+
     }
 
 
